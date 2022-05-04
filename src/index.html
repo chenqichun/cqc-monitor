@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>监控平台</title>
+</head>
+<body>
+  <div id="container">
+    <div class="content" elementtiming>
+      <input type="button" value="成功请求" onclick="senSuccess()"/>
+      <input type="button" value="失败请求" onclick="sendError()" />
+    </div>
+  </div>
+
+</body>
+<script>
+   function senSuccess() {
+   let xhr = new  XMLHttpRequest;
+   xhr.open('get', 'https://www.fastmock.site/mock/6b416c8224234314280f728a48d1c92b/test-list/testData', true)
+   xhr.onload = () => {
+     console.log(xhr.response)
+   }
+    xhr.send()
+  }
+  function sendError() {
+    let xhr = new  XMLHttpRequest;
+   xhr.open('get', '/error', true)
+   xhr.onerror = (err) => {
+     console.log(err)
+   }
+    xhr.send({name: '张三'})
+  }
+
+</script>
+
+</html>
